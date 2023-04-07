@@ -129,7 +129,7 @@ app.get('/getdocuments/pdf/:c_id',(req,res)=>{
     })
 })
 app.post('/addcomplaint/:u_id/:complaintx_comm',upload.single('complaintx_img'),(req,res)=>{
-  console.log('complaint add')
+  //console.log('complaint add')
   const complaintx=new Complaint({
     complaintx_user:req.params.u_id,
     complaintx_category:req.body.complaintx_category,
@@ -207,13 +207,13 @@ app.post('/homes',jsonParser,(req,res)=>{
               try{
                 if(req.body.id=='work'){
                   isloggedin=req.body.id
-                  console.log(isloggedin)
+                  //console.log(isloggedin)
                   res.send({auth:false})
                   
                 }
                 else if(s[0].userx_id==req.body.id && s[0].userx_password==req.body.p){
                   isloggedin=req.body.id
-                  console.log('userlogged'+req.body.id)
+                  //console.log('userlogged'+req.body.id)
 
                   res.send({auth:true,token:accesstoken,username:usernamej,type:"user"})
                 }
@@ -271,7 +271,7 @@ app.get('/getseru',(req,res)=>{
   })
 })
 app.post('/postvisitor/:o_id',(req,res)=>{
-  console.log(req.body.visitor_name)
+  //console.log(req.body.visitor_name)
   const visitor=new Visitorpass({
     visitor_name:req.body.visitor_name,
     visitor_reason:req.body.visitor_reason,
@@ -280,7 +280,7 @@ app.post('/postvisitor/:o_id',(req,res)=>{
     owner_id:req.params.o_id
   })
   visitor.save()
-  console.log('success')
+  //console.log('success')
   res.redirect('https://cms-f.onrender.com/home/'+req.params.o_id)
 
 })
@@ -495,5 +495,5 @@ app.get('/availablework1/:workn',(req,res)=>{
 
 // start express server on port 5000
 app.listen(process.env.PORT || 5000, () => {
-  console.log("server started on port 5000");
+  //console.log("server started on port 5000");
 });
