@@ -452,7 +452,7 @@ app.post('/uploadwork',(req,res)=>{
     work_prefered_area:req.body.work_prefered_area
   })
   work1.save()
-  res.redirect('/work')
+  res.redirect('https://cms-f.onrender.com/work')
 })
 app.post('/adduserx/:cid',(req,res)=>{
     const userx=new UserDB({
