@@ -58,7 +58,8 @@ const storagex = multer.diskStorage({
 const upload1 = multer({storage:storagex})
 
 app.get('/uploads/images/:img_id',(req,res)=>{
-  res.sendFile('C:/Users/eswar/CMS/view/cms/server/uploads/'+req.params.img_id)
+  console.log(__dirname)
+  res.sendFile(__dirname+'/'+req.params.img_id)
 })
 
 app.get('/logindb/:id',(req,res)=>{
@@ -138,7 +139,7 @@ app.post('/addcomplaint/:u_id/:complaintx_comm',upload.single('complaintx_img'),
     complaintx_comm:req.params.complaintx_comm
   })
   complaintx.save();
-  res.redirect('/Community')
+  res.redirect('https://cms-f.onrender.com/Community')
 })
 
 app.post('/uploaddoc/:u_id',upload1.single('documentx_pdf'),(req,res)=>{
@@ -150,7 +151,7 @@ app.post('/uploaddoc/:u_id',upload1.single('documentx_pdf'),(req,res)=>{
     documentx_pdf:req.file.filename
   })
   docx.save();
-  res.redirect('/Community')
+  res.redirect('https://cms-f.onrender.com/Community')
 })
 app.get('/getviss',(req,res)=>{
   Visitorpass.find({},(err,ss)=>{
@@ -169,7 +170,7 @@ app.post('/addsrequest/:u_id/:ids',(req,res)=>{
     
   })
   servicex.save();
-  res.redirect('/Community')
+  res.redirect('https://cms-f.onrender.com/Community')
 })
 app.post('/homes',jsonParser,(req,res)=>{
   const usernamej=req.body.id
@@ -218,7 +219,7 @@ app.post('/homes',jsonParser,(req,res)=>{
                 }
               }
               catch{
-                res.redirect('/')
+                res.redirect('https://cms-f.onrender.com/')
               }
               
             }
@@ -237,7 +238,7 @@ app.post('/homes',jsonParser,(req,res)=>{
       
     }
     catch{
-      res.redirect('/')
+      res.redirect('https://cms-f.onrender.com/')
     }
     
     
@@ -280,7 +281,7 @@ app.post('/postvisitor/:o_id',(req,res)=>{
   })
   visitor.save()
   console.log('success')
-  res.redirect('/home/'+req.params.o_id)
+  res.redirect('https://cms-f.onrender.com/home/'+req.params.o_id)
 
 })
 app.get('/getuserscadmin/:ca_id',(req,res)=>{
@@ -310,18 +311,18 @@ app.post('/updateuserx/:uid/:a_id',(req,res)=>{
     userx_door_no:req.body.userx_door_no
 }
   UserDB.findByIdAndUpdate({_id:req.params.uid},updateduser,(err,ss)=>{
-    res.redirect('/admin/'+req.params.a_id)
+    res.redirect('https://cms-f.onrender.com/admin/'+req.params.a_id)
   })
 })
 app.get('/delete/:dbname/:idm/:c_id',(req,res)=>{
   if(req.params.dbname=="UserDB"){
     UserDB.findByIdAndDelete({_id:req.params.idm},(err,ss)=>{
-      res.redirect('/admin/'+req.params.c_id)
+      res.redirect('https://cms-f.onrender.com/admin/'+req.params.c_id)
     })
   }
   if(req.params.dbname==="Manage"){
     ManagingStaff.findByIdAndDelete({_id:req.params.idm},(err,ss)=>{
-      res.redirect('/admin/'+req.params.c_id)
+      res.redirect('https://cms-f.onrender.com/admin/'+req.params.c_id)
     })
   }
 })
@@ -385,7 +386,7 @@ app.post('/postbills/:m_id',(req,res)=>{
 
   })
   billx.save();
-  res.redirect('/manage/'+req.params.m_id)
+  res.redirect('https://cms-f.onrender.com/manage/'+req.params.m_id)
 })
 app.post('/addmanage/:a_id', upload.single('managex_photo'),(req, res)=>{
   const managex=new ManagingStaff({
@@ -398,7 +399,7 @@ app.post('/addmanage/:a_id', upload.single('managex_photo'),(req, res)=>{
      managex_comm:req.params.a_id
   })
   managex.save();
-  res.redirect('/admin/'+req.params.a_id)
+  res.redirect('https://cms-f.onrender.com/admin/'+req.params.a_id)
 });
 app.post('/addemergencycontacts/:u_id',(req,res)=>{
   const emer1=new Emergencyc({
@@ -409,7 +410,7 @@ app.post('/addemergencycontacts/:u_id',(req,res)=>{
     emergencyx_comm:req.params.u_id
   })
   emer1.save()
-  res.redirect('/admin/'+req.params.u_id)
+  res.redirect('https://cms-f.onrender.com/admin/'+req.params.u_id)
 })
 app.get('/getemergency/:u_id',(req,res)=>{
   UserDB.find({userx_id:req.params.u_id},(err,ss)=>{
@@ -427,7 +428,7 @@ app.post('/addannouncement/:c_id',(req,res)=>{
     ann_community:req.params.c_id
   })
   annon.save()
-  res.redirect('/admin/'+req.params.c_id)
+  res.redirect('https://cms-f.onrender.com/admin/'+req.params.c_id)
 })
 app.get('/getnotifications/:notifuserid',(req,res)=>{
   Notifications.find({notificationx_userid:req.params.notifuserid},(err,s)=>{
@@ -442,7 +443,7 @@ app.post('/sendnotification/:cid',(req,res)=>{
     notificationx_userid:req.body.notificationx_userid
   })
   notif.save()
-  res.redirect('/admin/'+req.params.cid)
+  res.redirect('https://cms-f.onrender.com/admin/'+req.params.cid)
 })
 app.post('/uploadwork',(req,res)=>{
   const work1=new Worka({
@@ -464,7 +465,7 @@ app.post('/adduserx/:cid',(req,res)=>{
         userx_door_no:req.body.userx_door_no
     })
     userx.save()
-    res.redirect('/admin/'+req.params.cid)
+    res.redirect('https://cms-f.onrender.com/admin/'+req.params.cid)
 })
 
 app.post('/addcommunityx',(req,res)=>{
@@ -479,7 +480,7 @@ app.post('/addcommunityx',(req,res)=>{
       
   })
   communityx.save()
-  res.redirect('/headadmin')
+  res.redirect('https://cms-f.onrender.com/headadmin')
 })
 
 app.get('/availablework1/:workn',(req,res)=>{
