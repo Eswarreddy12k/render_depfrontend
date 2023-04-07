@@ -58,8 +58,8 @@ const storagex = multer.diskStorage({
 const upload1 = multer({storage:storagex})
 
 app.get('/uploads/images/:img_id',(req,res)=>{
-  console.log(__dirname)
-  res.sendFile(__dirname+'/'+req.params.img_id)
+  //console.log(__dirname)
+  res.sendFile(__dirname+'/uploads/'+req.params.img_id)
 })
 
 app.get('/logindb/:id',(req,res)=>{
